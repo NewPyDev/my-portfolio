@@ -14,7 +14,7 @@ export function Contact() {
 
             <div className="mx-auto mt-12 grid max-w-lg gap-4">
                 <a
-                    href="mailto:contact@example.com"
+                    href="mailto:n0nyf0xy@gmail.com"
                     className="flex items-center justify-between rounded-lg border bg-background p-4 transition-colors hover:bg-muted/50"
                 >
                     <div className="flex items-center gap-4">
@@ -23,7 +23,7 @@ export function Contact() {
                         </div>
                         <div className="text-left">
                             <h3 className="font-semibold">Email</h3>
-                            <p className="text-sm text-muted-foreground">contact@example.com</p>
+                            <p className="text-sm text-muted-foreground">n0nyf0xy@gmail.com</p>
                         </div>
                     </div>
                 </a>
