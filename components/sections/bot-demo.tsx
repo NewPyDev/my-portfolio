@@ -44,7 +44,7 @@ export function BotDemo() {
             if (lowerInput.includes("/help") || lowerInput.includes("help") || lowerInput.includes("hi")) {
                 responseText = "Available commands:\n/portfolio - See my work\n/contact - Get in touch\n/scraper - Web scraping services\n/bot - Bot development services"
             } else if (lowerInput.includes("/contact") || lowerInput.includes("hire")) {
-                responseText = "You can reach me at: contact@example.com (Replace with real email). Or DM me on Telegram!"
+                responseText = "You can DM me on Telegram at @Yassine_nagat0!"
             } else if (lowerInput.includes("/portfolio")) {
                 responseText = "Scroll up to see the Projects Gallery! I specialize in Polyboard, CorelDRAW, and Bot Dev."
             } else if (lowerInput.includes("/bot")) {

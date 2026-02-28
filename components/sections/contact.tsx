@@ -29,7 +29,7 @@ export function Contact() {
                 </a>
 
                 <a
-                    href="https://t.me/yourusername"
+                    href="https://t.me/Yassine_nagat0"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-between rounded-lg border bg-background p-4 transition-colors hover:bg-muted/50"
@@ -40,7 +40,7 @@ export function Contact() {
                         </div>
                         <div className="text-left">
                             <h3 className="font-semibold">Telegram</h3>
-                            <p className="text-sm text-muted-foreground">@yourusername</p>
+                            <p className="text-sm text-muted-foreground">@Yassine_nagat0</p>
                         </div>
                     </div>
                 </a>
