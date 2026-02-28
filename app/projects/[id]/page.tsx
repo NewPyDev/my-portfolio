@@ -68,10 +68,17 @@ export default async function ProjectPage(props: ProjectPageProps) {
                     </div>
 
                     <div className="relative aspect-video overflow-hidden rounded-xl border bg-muted">
-                        {/* In a real app, this would be the project image */}
-                        <div className="flex h-full items-center justify-center text-muted-foreground">
-                            <p>Project Preview Image for {project.title}</p>
-                        </div>
+                        {project.imageUrl ? (
+                            <img
+                                src={project.imageUrl}
+                                alt={project.title}
+                                className="object-cover w-full h-full"
+                            />
+                        ) : (
+                            <div className="flex h-full items-center justify-center text-muted-foreground">
+                                <p>Project Preview Image for {project.title}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

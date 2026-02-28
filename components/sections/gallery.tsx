@@ -27,8 +27,8 @@ export function Gallery() {
                         key={category}
                         onClick={() => setFilter(category as Category | "All")}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === category
-                                ? "bg-primary text-primary-foreground"
-                                : "bg-muted hover:bg-muted/80 text-muted-foreground"
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
                             }`}
                     >
                         {category === "All" ? "All Projects" : category === "Design" ? "Creative Suite" : "Vibe Code"}
@@ -54,7 +54,16 @@ export function Gallery() {
                             <Link href={`/projects/${project.id}`} className="block h-full">
                                 <div className="relative aspect-video overflow-hidden rounded-md bg-muted">
                                     {/* Visual Representation */}
-                                    {project.category === "Design" ? (
+                                    {project.imageUrl ? (
+                                        <div className="relative h-full w-full">
+                                            <img
+                                                src={project.imageUrl}
+                                                alt={project.title}
+                                                className="object-cover h-full w-full"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        </div>
+                                    ) : project.category === "Design" ? (
                                         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition-colors">
                                             <Layers className="h-12 w-12 text-indigo-500 opacity-50" />
                                         </div>
