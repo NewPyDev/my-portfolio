@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { projects } from "@/lib/data"
 import { Navbar } from "@/components/sections/navbar"
 import { Footer } from "@/components/sections/footer"
-import { ExternalLink, Github, ArrowLeft } from "lucide-react"
+import { ExternalLink, Github, ArrowLeft, Layers, Terminal } from "lucide-react"
 import Link from "next/link"
 
 
@@ -74,9 +74,13 @@ export default async function ProjectPage(props: ProjectPageProps) {
                                 alt={project.title}
                                 className="object-cover w-full h-full"
                             />
+                        ) : project.category === "Design" ? (
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 transition-colors">
+                                <Layers className="h-24 w-24 text-indigo-500 opacity-50" />
+                            </div>
                         ) : (
-                            <div className="flex h-full items-center justify-center text-muted-foreground">
-                                <p>Project Preview Image for {project.title}</p>
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 transition-colors">
+                                <Terminal className="h-24 w-24 text-emerald-500 opacity-50" />
                             </div>
                         )}
                     </div>
