@@ -75,12 +75,12 @@ export default async function ProjectPage(props: ProjectPageProps) {
                                 className="object-cover w-full h-full"
                             />
                         ) : project.category === "Design" ? (
-                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 transition-colors">
-                                <Layers className="h-24 w-24 text-indigo-500 opacity-50" />
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 transition-colors p-8 text-center">
+                                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-indigo-700/40 dark:text-indigo-400/40">{project.title}</h2>
                             </div>
                         ) : (
-                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 transition-colors">
-                                <Terminal className="h-24 w-24 text-emerald-500 opacity-50" />
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 transition-colors p-8 text-center">
+                                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-700/40 dark:text-emerald-400/40">{project.title}</h2>
                             </div>
                         )}
                     </div>

@@ -64,12 +64,12 @@ export function Gallery() {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                     ) : project.category === "Design" ? (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition-colors">
-                                            <Layers className="h-12 w-12 text-indigo-500 opacity-50" />
+                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition-colors p-6 text-center">
+                                            <h3 className="font-bold tracking-tight text-indigo-700/60 dark:text-indigo-400/60 text-xl sm:text-2xl">{project.title}</h3>
                                         </div>
                                     ) : (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 group-hover:from-emerald-500/20 group-hover:to-cyan-500/20 transition-colors">
-                                            <Terminal className="h-12 w-12 text-emerald-500 opacity-50" />
+                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 group-hover:from-emerald-500/20 group-hover:to-cyan-500/20 transition-colors p-6 text-center">
+                                            <h3 className="font-bold tracking-tight text-emerald-700/60 dark:text-emerald-400/60 text-xl sm:text-2xl">{project.title}</h3>
                                         </div>
                                     )}
 
