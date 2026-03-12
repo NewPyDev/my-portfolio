@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Click | Designer & Vibe Coder",
+  title: "Hami | Designer & Vibe Coder",
   description: "Portfolio of a Polyboard Designer, CorelDRAW Professional, and High-Performance Bot Developer.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://newpydev.github.io/my-portfolio",
-    title: "Click | Designer & Vibe Coder",
+    title: "Hami | Designer & Vibe Coder",
     description: "Bridging the gap between aesthetic precision and functional automation.",
-    siteName: "Click Portfolio",
+    siteName: "Hami Portfolio",
   },
 };
 
