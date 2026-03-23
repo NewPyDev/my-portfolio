@@ -121,5 +121,13 @@ export const projects: Project[] = [
         category: "Design",
         tags: ["Polyboard", "Commercial", "Interior"],
         imageUrl: "/assets/polyboard11.jpeg",
-    }
+    },
+    {
+        id: "VvirusCode",
+        title: "AirMax TV Code Fetcher",
+        description: "Automated Python script that extracts the weekly AirMax TV activation code and sends it via Telegram, powered by GitHub Actions for scheduled execution.",
+        category: "Code",
+        tags: ["Python", "Automation", "Telegram Bot"],
+        repoUrl: "https://github.com/NewPyDev/VvirusCode",
+    },
 ];
