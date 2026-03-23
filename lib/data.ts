@@ -13,7 +13,7 @@ export const projects: Project[] = [
         id: "woodworking-portfolio",
         title: "Woodworking Portfolio",
         description: "Professional woodworking portfolio showcasing CNC, Polyboard, ArtCAM, and Aspire expertise",
-        category: "Design",
+        category: "Code",
         tags: ["HTML", "Portfolio", "CNC"],
         repoUrl: "https://github.com/NewPyDev/woodworking-portfolio",
     },

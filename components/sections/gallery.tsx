@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { projects } from "@/lib/data"
-import { Layers, Terminal, Github } from "lucide-react"
+import { Github, ArrowUpRight, Code2, Palette } from "lucide-react"
 import Link from "next/link"
 import { Category } from "@/lib/types"
 
@@ -12,101 +12,161 @@ export function Gallery() {
 
     const filteredProjects = projects.filter(project => filter === "All" || project.category === filter)
 
+    const filterLabels: Record<string, string> = {
+        "All": "All Projects",
+        "Design": "Creative Suite",
+        "Code": "Vibe Code",
+    }
+
     return (
-        <section id="projects" className="container py-24 sm:py-32 space-y-12 bg-muted/30">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Featured Works</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    A selection of parametric designs, vector illustrations, and high-performance bots.
-                </p>
+        <section id="projects" className="py-24 sm:py-32">
+            {/* Section Header */}
+            <div className="container space-y-16">
+                <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                    <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground">
+                        <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                        </span>
+                        Portfolio
+                    </div>
+                    <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-r from-foreground via-foreground/80 to-foreground/60 bg-clip-text text-transparent">
+                        Featured Works
+                    </h2>
+                    <p className="max-w-[600px] text-muted-foreground text-lg">
+                        From precision furniture design to high-performance automation — a showcase of craft and code.
+                    </p>
+                </div>
+
+                {/* Filter Buttons */}
+                <div className="flex justify-center">
+                    <div className="inline-flex items-center gap-1 rounded-full border p-1 bg-muted/50 backdrop-blur-sm">
+                        {["All", "Design", "Code"].map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setFilter(category as Category | "All")}
+                                className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === category
+                                    ? "bg-background text-foreground shadow-sm"
+                                    : "text-muted-foreground hover:text-foreground"
+                                    }`}
+                            >
+                                {filterLabels[category]}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Project Grid */}
+                <motion.div
+                    layout
+                    className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                >
+                    <AnimatePresence>
+                        {filteredProjects.map((project, index) => (
+                            <motion.div
+                                layout
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3, delay: index * 0.05 }}
+                                key={project.id}
+                                className="group relative"
+                            >
+                                <Link href={`/projects/${project.id}`} className="block h-full">
+                                    <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-300 hover:border-border hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20">
+                                        {/* Image / Placeholder Area */}
+                                        <div className="relative aspect-[4/3] overflow-hidden">
+                                            {project.imageUrl ? (
+                                                <>
+                                                    <img
+                                                        src={project.imageUrl}
+                                                        alt={project.title}
+                                                        className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                                                    <div className="absolute bottom-4 left-4 right-4">
+                                                        <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur-md ${
+                                                            project.category === "Design"
+                                                                ? "bg-indigo-500/20 text-indigo-200 border border-indigo-400/20"
+                                                                : "bg-emerald-500/20 text-emerald-200 border border-emerald-400/20"
+                                                        }`}>
+                                                            {project.category === "Design" ? <Palette className="h-3 w-3" /> : <Code2 className="h-3 w-3" />}
+                                                            {project.category === "Design" ? "Creative" : "Code"}
+                                                        </span>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <div className={`flex h-full w-full flex-col items-center justify-center p-8 text-center transition-all duration-300 ${
+                                                    project.category === "Design"
+                                                        ? "bg-gradient-to-br from-indigo-500/5 via-purple-500/10 to-pink-500/5 group-hover:from-indigo-500/10 group-hover:via-purple-500/15 group-hover:to-pink-500/10"
+                                                        : "bg-gradient-to-br from-emerald-500/5 via-cyan-500/10 to-teal-500/5 group-hover:from-emerald-500/10 group-hover:via-cyan-500/15 group-hover:to-teal-500/10"
+                                                }`}>
+                                                    <div className={`mb-4 rounded-2xl p-3 ${
+                                                        project.category === "Design"
+                                                            ? "bg-indigo-500/10 text-indigo-500"
+                                                            : "bg-emerald-500/10 text-emerald-500"
+                                                    }`}>
+                                                        {project.category === "Design"
+                                                            ? <Palette className="h-8 w-8" />
+                                                            : <Code2 className="h-8 w-8" />
+                                                        }
+                                                    </div>
+                                                    <h3 className={`font-bold tracking-tight text-lg leading-tight ${
+                                                        project.category === "Design"
+                                                            ? "text-indigo-700/50 dark:text-indigo-400/50"
+                                                            : "text-emerald-700/50 dark:text-emerald-400/50"
+                                                    }`}>
+                                                        {project.title}
+                                                    </h3>
+                                                </div>
+                                            )}
+
+                                            {/* Hover Arrow */}
+                                            <div className="absolute top-4 right-4 rounded-full bg-background/80 p-2 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 backdrop-blur-sm shadow-sm">
+                                                <ArrowUpRight className="h-4 w-4 text-foreground" />
+                                            </div>
+                                        </div>
+
+                                        {/* Card Content */}
+                                        <div className="p-5 space-y-3">
+                                            <div className="flex items-start justify-between gap-2">
+                                                <h3 className="font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
+                                                    {project.title}
+                                                </h3>
+                                                {!project.imageUrl && (
+                                                    <span className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                                                        project.category === "Design"
+                                                            ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400"
+                                                            : "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                                                    }`}>
+                                                        {project.category === "Design" ? "Creative" : "Code"}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="line-clamp-2 text-sm text-muted-foreground leading-relaxed">
+                                                {project.description}
+                                            </p>
+                                            <div className="flex flex-wrap gap-1.5 pt-1">
+                                                {project.tags.map(tag => (
+                                                    <span key={tag} className="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium bg-muted text-muted-foreground">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            {project.repoUrl && (
+                                                <div className="flex items-center gap-1.5 pt-1 text-xs text-muted-foreground">
+                                                    <Github className="h-3.5 w-3.5" />
+                                                    <span>Source Available</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
             </div>
-
-            <div className="flex justify-center gap-4">
-                {["All", "Design", "Code"].map((category) => (
-                    <button
-                        key={category}
-                        onClick={() => setFilter(category as Category | "All")}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === category
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
-                            }`}
-                    >
-                        {category === "All" ? "All Projects" : category === "Design" ? "Creative Suite" : "Vibe Code"}
-                    </button>
-                ))}
-            </div>
-
-            <motion.div
-                layout
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-                <AnimatePresence>
-                    {filteredProjects.map((project) => (
-                        <motion.div
-                            layout
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ duration: 0.2 }}
-                            key={project.id}
-                            className="group relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-lg"
-                        >
-                            <Link href={`/projects/${project.id}`} className="block h-full">
-                                <div className="relative aspect-video overflow-hidden rounded-md bg-muted">
-                                    {/* Visual Representation */}
-                                    {project.imageUrl ? (
-                                        <div className="relative h-full w-full">
-                                            <img
-                                                src={project.imageUrl}
-                                                alt={project.title}
-                                                className="object-cover h-full w-full"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        </div>
-                                    ) : project.category === "Design" ? (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition-colors p-6 text-center">
-                                            <h3 className="font-bold tracking-tight text-indigo-700/60 dark:text-indigo-400/60 text-xl sm:text-2xl">{project.title}</h3>
-                                        </div>
-                                    ) : (
-                                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 group-hover:from-emerald-500/20 group-hover:to-cyan-500/20 transition-colors p-6 text-center">
-                                            <h3 className="font-bold tracking-tight text-emerald-700/60 dark:text-emerald-400/60 text-xl sm:text-2xl">{project.title}</h3>
-                                        </div>
-                                    )}
-
-                                    {/* Hover Overlay */}
-                                    <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/80 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
-                                        <span className="font-medium bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm">View Details</span>
-                                        {project.repoUrl && (
-                                            <span className="rounded-full bg-secondary p-2 hover:bg-secondary/80">
-                                                <Github className="h-4 w-4" />
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="p-4">
-                                    <div className="flex items-center justify-between">
-                                        <h3 className="font-semibold group-hover:underline text-foreground">{project.title}</h3>
-                                        <span className={`text-xs px-2 py-1 rounded-full ${project.category === "Design" ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400" : "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"}`}>
-                                            {project.category === "Design" ? "Creative" : "Code"}
-                                        </span>
-                                    </div>
-                                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                                        {project.description}
-                                    </p>
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
-            </motion.div>
         </section>
     )
 }
