@@ -10,3 +10,23 @@ export interface Project {
     repoUrl?: string;
     demoUrl?: string;
 }
+
+export interface Service {
+    id: string;
+    title: string;
+    description: string;
+    icon: string;
+    price: string;
+    features: string[];
+    gradient: string;
+}
+
+export interface Testimonial {
+    id: string;
+    name: string;
+    role: string;
+    location: string;
+    quote: string;
+    rating: number;
+    initials: string;
+}

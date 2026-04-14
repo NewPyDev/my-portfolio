@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 
-type SectionId = "hero" | "about" | "gallery" | "bot-demo" | "contact"
+type SectionId = "hero" | "about" | "services" | "gallery" | "testimonials" | "latest-work" | "bot-demo" | "contact"
 
 interface ScrollBackgroundContextType {
     activeSection: SectionId
@@ -36,7 +36,10 @@ export function ScrollBackgroundProvider({ children }: { children: React.ReactNo
 const backgrounds: Record<SectionId, string> = {
     hero: "linear-gradient(to bottom, transparent, transparent)", // Hero has its own background
     about: "linear-gradient(to bottom right, hsl(var(--background)), hsl(var(--primary) / 0.05))",
+    services: "radial-gradient(circle at center, hsla(220, 80%, 40%, 0.12) 0%, transparent 70%)", // Blue for services
     gallery: "radial-gradient(circle at center, hsla(110, 80%, 40%, 0.15) 0%, transparent 70%)", // Greenish for creative
+    testimonials: "radial-gradient(circle at center, hsla(40, 80%, 50%, 0.10) 0%, transparent 70%)", // Warm amber for testimonials
+    "latest-work": "radial-gradient(circle at center, hsla(270, 80%, 40%, 0.12) 0%, transparent 70%)", // Purple for GitHub
     "bot-demo": "radial-gradient(circle at center, hsla(260, 80%, 40%, 0.15) 0%, transparent 70%)", // Purple/Blue for tech
     contact: "linear-gradient(to top left, hsl(var(--background)), hsl(var(--destructive) / 0.05))",
 }

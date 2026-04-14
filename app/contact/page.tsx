@@ -6,7 +6,7 @@ export default function ContactPage() {
     return (
         <main className="flex min-h-screen flex-col">
             <Navbar />
-            <div className="pt-20">
+            <div className="pt-8">
                 <Contact />
             </div>
             <div className="flex-1" />

@@ -1,60 +1,101 @@
 "use client"
 
-import { Mail, MessageSquare, Linkedin, Github } from "lucide-react"
+import { Mail, MessageSquare, Github, ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 export function Contact() {
     return (
         <section id="contact" className="container py-24 sm:py-32">
             <div className="mx-auto max-w-[58rem] text-center">
-                <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Get in Touch</h2>
-                <p className="mt-4 text-muted-foreground sm:text-lg">
-                    Ready to start a project? Whether it&apos;s a complex furniture design or a high-speed trading bot, I&apos;m here to help.
-                </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                >
+                    <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-6">
+                        <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-500" />
+                        </span>
+                        Contact
+                    </div>
+                    <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl">
+                        Let&apos;s Build Something{" "}
+                        <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">Together</span>
+                    </h2>
+                    <p className="mt-4 text-muted-foreground sm:text-lg">
+                        Ready to automate your workflow, build a custom bot, or design your next interior project?
+                        <br />
+                        <span className="text-foreground font-medium">I typically respond within 24 hours.</span>
+                    </p>
+                </motion.div>
             </div>
 
             <div className="mx-auto mt-12 grid max-w-lg gap-4">
-                <a
+                <motion.a
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    viewport={{ once: true }}
                     href="mailto:n0nyf0xy@gmail.com"
-                    className="flex items-center justify-between rounded-lg border bg-background p-4 transition-colors hover:bg-muted/50"
+                    className="group flex items-center justify-between rounded-xl border bg-card p-5 transition-all duration-300 hover:border-border hover:shadow-lg hover:-translate-y-0.5"
                 >
                     <div className="flex items-center gap-4">
-                        <div className="rounded-md bg-primary/10 p-2 text-primary">
-                            <Mail className="h-6 w-6" />
+                        <div className="rounded-lg bg-gradient-to-br from-rose-500 to-pink-600 p-2.5 text-white shadow-lg">
+                            <Mail className="h-5 w-5" />
                         </div>
                         <div className="text-left">
                             <h3 className="font-semibold">Email</h3>
                             <p className="text-sm text-muted-foreground">n0nyf0xy@gmail.com</p>
                         </div>
                     </div>
-                </a>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.a>
 
-                <a
+                <motion.a
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    viewport={{ once: true }}
                     href="https://t.me/Yassine_nagat0"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg border bg-background p-4 transition-colors hover:bg-muted/50"
+                    className="group flex items-center justify-between rounded-xl border bg-card p-5 transition-all duration-300 hover:border-border hover:shadow-lg hover:-translate-y-0.5"
                 >
                     <div className="flex items-center gap-4">
-                        <div className="rounded-md bg-blue-500/10 p-2 text-blue-500">
-                            <MessageSquare className="h-6 w-6" />
+                        <div className="rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 p-2.5 text-white shadow-lg">
+                            <MessageSquare className="h-5 w-5" />
                         </div>
                         <div className="text-left">
                             <h3 className="font-semibold">Telegram</h3>
-                            <p className="text-sm text-muted-foreground">@Yassine_nagat0</p>
+                            <p className="text-sm text-muted-foreground">@Yassine_nagat0 — fastest response</p>
                         </div>
                     </div>
-                </a>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.a>
 
-                <div className="mt-8 flex justify-center gap-6">
-                    <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
-                        <Github className="h-6 w-6" />
-                        <span className="sr-only">GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
-                        <Linkedin className="h-6 w-6" />
-                        <span className="sr-only">LinkedIn</span>
-                    </a>
-                </div>
+                <motion.a
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    href="https://github.com/NewPyDev"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex items-center justify-between rounded-xl border bg-card p-5 transition-all duration-300 hover:border-border hover:shadow-lg hover:-translate-y-0.5"
+                >
+                    <div className="flex items-center gap-4">
+                        <div className="rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 p-2.5 text-white shadow-lg">
+                            <Github className="h-5 w-5" />
+                        </div>
+                        <div className="text-left">
+                            <h3 className="font-semibold">GitHub</h3>
+                            <p className="text-sm text-muted-foreground">github.com/NewPyDev</p>
+                        </div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.a>
             </div>
         </section>
     )

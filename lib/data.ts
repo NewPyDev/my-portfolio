@@ -1,4 +1,4 @@
-import { Project } from "@/lib/types";
+import { Project, Service, Testimonial } from "@/lib/types";
 
 export const projects: Project[] = [
     {
@@ -125,9 +125,98 @@ export const projects: Project[] = [
     {
         id: "VvirusCode",
         title: "AirMax TV Code Fetcher",
-        description: "Automated Python script that extracts the weekly AirMax TV activation code and sends it via Telegram, powered by GitHub Actions for scheduled execution.",
+        description: "A fully automated CI/CD pipeline that scrapes the weekly AirMax TV activation code from a WordPress site by bypassing content-gating and anti-bot measures, then delivers it instantly via Telegram — with built-in duplicate detection to avoid repeat notifications.",
         category: "Code",
-        tags: ["Python", "Automation", "Telegram Bot"],
+        tags: ["Python", "Web Scraping", "Telegram Bot", "GitHub Actions", "CI/CD"],
         repoUrl: "https://github.com/NewPyDev/VvirusCode",
+    },
+];
+
+export const services: Service[] = [
+    {
+        id: "web-scraping",
+        title: "Web Scraping Solutions",
+        description: "Extract data from any website — even the ones that fight back. Dynamic sites, anti-bot bypasses, and structured, clean output delivered in your preferred format.",
+        icon: "Database",
+        price: "From $150",
+        features: [
+            "Single & multi-site extraction",
+            "Anti-bot & CAPTCHA bypass",
+            "Scheduled & recurring scrapes",
+            "Clean CSV/JSON/Excel output",
+        ],
+        gradient: "from-emerald-500 to-teal-600",
+    },
+    {
+        id: "telegram-discord-bots",
+        title: "Telegram & Discord Bots",
+        description: "Custom automated assistants that work 24/7. From community management to order tracking and smart notifications — built fast, built to last.",
+        icon: "MessageSquare",
+        price: "From $100",
+        features: [
+            "Custom commands & menus",
+            "Database integration",
+            "Payment & API integrations",
+            "Admin dashboards & analytics",
+        ],
+        gradient: "from-blue-500 to-indigo-600",
+    },
+    {
+        id: "scraper-bot-combo",
+        title: "Scraper + Bot Pipeline",
+        description: "The full automation stack: scrape data automatically and deliver it straight to your Telegram or Discord. Zero manual work, zero missed updates.",
+        icon: "Zap",
+        price: "From $250",
+        features: [
+            "End-to-end automation",
+            "Real-time data delivery",
+            "Duplicate detection",
+            "CI/CD powered scheduling",
+        ],
+        gradient: "from-violet-500 to-purple-600",
+    },
+    {
+        id: "furniture-design",
+        title: "Furniture & Interior Design",
+        description: "Professional Polyboard designs for kitchens, wardrobes, retail fittings, and commercial interiors. Production-ready files with 3D renders and precise cut lists.",
+        icon: "Layers",
+        price: "From $200",
+        features: [
+            "3D renders & walkthroughs",
+            "Manufacturing-ready cut lists",
+            "Material cost breakdowns",
+            "CNC-ready output files",
+        ],
+        gradient: "from-amber-500 to-orange-600",
+    },
+];
+
+export const testimonials: Testimonial[] = [
+    {
+        id: "testimonial-1",
+        name: "Karim B.",
+        role: "E-commerce Owner",
+        location: "Morocco",
+        quote: "Hami built a Telegram bot that sends me real-time order updates from my Shopify store. The setup was smooth, he explained everything clearly, and the bot hasn't gone down once in 6 months. Seriously reliable work.",
+        rating: 5,
+        initials: "KB",
+    },
+    {
+        id: "testimonial-2",
+        name: "Sarah M.",
+        role: "Marketing Agency Lead",
+        location: "Dubai",
+        quote: "We needed business leads scraped from Google Maps across 12 cities — cleanly formatted and deduplicated. Hami delivered structured data in 48 hours, no back-and-forth needed. Will definitely work with him again.",
+        rating: 5,
+        initials: "SM",
+    },
+    {
+        id: "testimonial-3",
+        name: "Rachid T.",
+        role: "Interior Designer",
+        location: "Algiers",
+        quote: "The Polyboard designs Hami delivered for our pharmacy project were production-ready from day one. Precise measurements, clean layouts, realistic 3D renders, and incredibly fast turnaround. A true professional.",
+        rating: 5,
+        initials: "RT",
     },
 ];
