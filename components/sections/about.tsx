@@ -1,7 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Database, Layers, PenTool, Zap, MessageSquare, Cpu, Globe } from "lucide-react"
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 
 const skills = [
@@ -31,24 +33,44 @@ const skills = [
     }
 ]
 
-const storyParagraphs = [
-    "Hey, I'm Mohammed Yassine — but everyone calls me Hami. My coding journey started in my early twenties, and honestly, it was messy at first. I bounced around between C, C++, C#, and even gave JavaScript a fair shot. Nothing really stuck. I'd start a tutorial, get halfway through, and feel like I was fighting the language more than learning it.",
-    "Then one day, I stumbled into Python. And I don't know how to explain it other than — it just made sense. The syntax, the logic, the way you could go from idea to working code in the same afternoon. I didn't just learn Python. I fell in love with it. I'd stay up way too late building random stuff — little scripts to rename my files, calculators nobody asked for, a tool to organize my music library. Nothing impressive, but every small project taught me something new.",
-    "After a while, I started pushing further. I picked up Flask, Django, tried my hand at web apps, even built a few desktop tools. I was just hungry to see what Python could really do. And then I discovered web scraping and automation — and that was the moment everything changed for me. The idea that I could write a script that goes out, collects data, processes it, and delivers it somewhere automatically? That blew my mind.",
-    "When COVID hit and the world slowed down, I didn't. I went all in on bots and scraping. Telegram bots, Discord bots, data pipelines, scheduled automations — I built them obsessively. I learned how anti-bot systems work just so I could figure out how to get past them. I studied APIs, reverse-engineered websites, and got really comfortable living in the terminal.",
-    "And then, just when I thought I'd found my groove, AI came into the picture — and honestly, it was like strapping a rocket to everything I'd already built. I started combining my scraping and automation knowledge with AI tools, and the speed at which I could ship went through the roof. What used to take me days now takes hours. What used to take hours now takes minutes. It's not about replacing the thinking — it's about amplifying it. AI didn't change what I do. It just made me dangerously fast at doing it.",
-]
+const codeStory = {
+    badge: "About Me",
+    title: "the Code",
+    gradient: "from-emerald-500 to-cyan-500",
+    paragraphs: [
+        "Hey, I'm Mohammed Yassine — but everyone calls me Hami. My coding journey started in my early twenties, and honestly, it was messy at first. I bounced around between C, C++, C#, and even gave JavaScript a fair shot. Nothing really stuck. I'd start a tutorial, get halfway through, and feel like I was fighting the language more than learning it.",
+        "Then one day, I stumbled into Python. And I don't know how to explain it other than — it just made sense. The syntax, the logic, the way you could go from idea to working code in the same afternoon. I didn't just learn Python. I fell in love with it. I'd stay up way too late building random stuff — little scripts to rename my files, calculators nobody asked for, a tool to organize my music library. Nothing impressive, but every small project taught me something new.",
+        "After a while, I started pushing further. I picked up Flask, Django, tried my hand at web apps, even built a few desktop tools. I was just hungry to see what Python could really do. And then I discovered web scraping and automation — and that was the moment everything changed for me. The idea that I could write a script that goes out, collects data, processes it, and delivers it somewhere automatically? That blew my mind.",
+        "When COVID hit and the world slowed down, I didn't. I went all in on bots and scraping. Telegram bots, Discord bots, data pipelines, scheduled automations — I built them obsessively. I learned how anti-bot systems work just so I could figure out how to get past them. I studied APIs, reverse-engineered websites, and got really comfortable living in the terminal.",
+        "And then, just when I thought I'd found my groove, AI came into the picture — and honestly, it was like strapping a rocket to everything I'd already built. I started combining my scraping and automation knowledge with AI tools, and the speed at which I could ship went through the roof. What used to take me days now takes hours. What used to take hours now takes minutes. It's not about replacing the thinking — it's about amplifying it. AI didn't change what I do. It just made me dangerously fast at doing it.",
+    ],
+}
 
-const designStoryParagraphs = [
-    "Here's the part most people don't expect — the coding is only half of who I am. When COVID hit, the world didn't just slow down for my dev career. It hit everything. I found myself without work, no clear direction, just a lot of free time and a need to figure things out. That's when a close friend of mine — who was already working at a woodworking company — reached out and asked if I wanted to join him.",
-    "It was a small, specialized company focused on 'Sur Mesure' — fully custom-made furniture and interiors. Walk-in closets, kitchens, pharmacy fittings, retail displays, reception desks — everything built from scratch, tailored to the exact millimeter for each client. I had zero experience in the field, but I said yes. And honestly? It was one of the best decisions I've ever made.",
-    "I started from nothing. I didn't know what a cut list was, didn't understand material thickness, had never heard of Polyboard. But I threw myself into it the same way I threw myself into Python — with obsessive curiosity. I learned Polyboard inside and out — parametric furniture design, automatic hardware placement, material cost reports, 3D rendering. It became second nature.",
-    "Then came CorelDRAW. The company needed precise vector layouts for signage, branding, and detailed technical drawings. I picked it up fast and eventually became the go-to person for anything that needed clean, production-ready graphics. After that, I got into ArtCAM and Aspire for CNC carving — decorative panels, 3D relief work, intricate patterns that you just can't do by hand.",
-    "And the machines themselves — I didn't just design on screen. I learned to operate the CNC router, loading programs, setting tool paths, adjusting feeds and speeds. I even worked with a laser CNC for engraving and precision cutting. I'm not a machinist by trade, but I understand the full pipeline: from a client's sketch all the way to the finished piece coming off the machine.",
-    "That hands-on experience changed how I think about design. I don't just make things that look good in 3D — I make things that can actually be built, assembled, and installed without headaches. Every design I deliver comes with clean cut lists, hardware specs, and files ready for production. No guesswork, no surprises on the workshop floor.",
-]
+const designStory = {
+    badge: "About Me",
+    title: "the Design",
+    gradient: "from-indigo-500 to-purple-600",
+    paragraphs: [
+        "Hey, I'm Mohammed Yassine — but everyone calls me Hami. The coding is only half of who I am. When COVID hit, the world didn't just slow down for my dev career. It hit everything. I found myself without work, no clear direction, just a lot of free time and a need to figure things out. That's when a close friend of mine — who was already working at a woodworking company — reached out and asked if I wanted to join him.",
+        "It was a small, specialized company focused on 'Sur Mesure' — fully custom-made furniture and interiors. Walk-in closets, kitchens, pharmacy fittings, retail displays, reception desks — everything built from scratch, tailored to the exact millimeter for each client. I had zero experience in the field, but I said yes. And honestly? It was one of the best decisions I've ever made.",
+        "I started from nothing. I didn't know what a cut list was, didn't understand material thickness, had never heard of Polyboard. But I threw myself into it the same way I threw myself into Python — with obsessive curiosity. I learned Polyboard inside and out — parametric furniture design, automatic hardware placement, material cost reports, 3D rendering. It became second nature.",
+        "Then came CorelDRAW. The company needed precise vector layouts for signage, branding, and detailed technical drawings. I picked it up fast and eventually became the go-to person for anything that needed clean, production-ready graphics. After that, I got into ArtCAM and Aspire for CNC carving — decorative panels, 3D relief work, intricate patterns that you just can't do by hand.",
+        "And the machines themselves — I didn't just design on screen. I learned to operate the CNC router, loading programs, setting tool paths, adjusting feeds and speeds. I even worked with a laser CNC for engraving and precision cutting. I'm not a machinist by trade, but I understand the full pipeline: from a client's sketch all the way to the finished piece coming off the machine.",
+        "That hands-on experience changed how I think about design. I don't just make things that look good in 3D — I make things that can actually be built, assembled, and installed without headaches. Every design I deliver comes with clean cut lists, hardware specs, and files ready for production. No guesswork, no surprises on the workshop floor.",
+    ],
+}
 
 export function About() {
+    const { theme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted && theme === "dark"
+    const activeStory = isDark ? codeStory : designStory
+
     return (
         <section id="about" className="container py-24 sm:py-32 space-y-20">
             {/* Story Section */}
@@ -62,7 +84,7 @@ export function About() {
                     className="lg:col-span-2 flex flex-col items-center lg:sticky lg:top-24"
                 >
                     <div className="relative mb-6">
-                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-500 opacity-20 blur-lg" />
+                        <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${isDark ? 'from-emerald-500 via-cyan-500 to-blue-500' : 'from-indigo-500 via-purple-500 to-pink-500'} opacity-20 blur-lg transition-all duration-700`} />
                         <div className="relative overflow-hidden rounded-2xl border-2 border-border/50 shadow-2xl">
                             <Image
                                 src="/assets/avatar.png"
@@ -85,72 +107,50 @@ export function About() {
                     </div>
                 </motion.div>
 
-                {/* Story — Right Column */}
+                {/* Story — Right Column (Theme-Aware) */}
                 <div className="lg:col-span-3 space-y-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
-                            About Me
-                        </div>
-                        <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl mb-6">
-                            The Story Behind<br />
-                            <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">the Code</span>
-                        </h2>
-                    </motion.div>
-
-                    {storyParagraphs.map((paragraph, i) => (
-                        <motion.p
-                            key={i}
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: i * 0.08 }}
-                            viewport={{ once: true }}
-                            className="text-muted-foreground leading-relaxed text-[15px]"
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={isDark ? "code" : "design"}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.4 }}
                         >
-                            {paragraph}
-                        </motion.p>
-                    ))}
-                </div>
-            </div>
+                            <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
+                                {activeStory.badge}
+                            </div>
+                            <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl mb-6">
+                                The Story Behind<br />
+                                <span className={`bg-gradient-to-r ${activeStory.gradient} bg-clip-text text-transparent transition-all duration-500`}>
+                                    {activeStory.title}
+                                </span>
+                            </h2>
+                        </motion.div>
+                    </AnimatePresence>
 
-            {/* Design Story Section */}
-            <div className="grid gap-12 lg:grid-cols-5 lg:gap-16 items-start">
-                {/* Spacer for alignment with avatar column */}
-                <div className="lg:col-span-2 hidden lg:block" />
-
-                {/* Design Story — Right Column */}
-                <div className="lg:col-span-3 space-y-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
-                            The Other Side
-                        </div>
-                        <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl mb-6">
-                            The Story Behind<br />
-                            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">the Design</span>
-                        </h2>
-                    </motion.div>
-
-                    {designStoryParagraphs.map((paragraph, i) => (
-                        <motion.p
-                            key={`design-${i}`}
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: i * 0.08 }}
-                            viewport={{ once: true }}
-                            className="text-muted-foreground leading-relaxed text-[15px]"
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={isDark ? "code-paragraphs" : "design-paragraphs"}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="space-y-6"
                         >
-                            {paragraph}
-                        </motion.p>
-                    ))}
+                            {activeStory.paragraphs.map((paragraph, i) => (
+                                <motion.p
+                                    key={i}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                                    className="text-muted-foreground leading-relaxed text-[15px]"
+                                >
+                                    {paragraph}
+                                </motion.p>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
 
