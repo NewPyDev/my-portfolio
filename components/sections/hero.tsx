@@ -114,17 +114,21 @@ export function Hero() {
                 {/* Theme Toggle Hint */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 1, 0] }}
+                    animate={{ opacity: [0, 0.7, 0.7, 0] }}
                     transition={{
-                        duration: 4,
-                        times: [0, 0.2, 0.8, 1],
+                        duration: 5,
+                        times: [0, 0.15, 0.85, 1],
                         repeat: Infinity,
-                        repeatDelay: 2
+                        repeatDelay: 4
                     }}
-                    className="absolute bottom-10 animate-bounce text-xs text-muted-foreground"
+                    className="absolute bottom-10 text-xs text-muted-foreground/70"
                 >
-                    <span className="bg-muted px-2 py-1 rounded-full border shadow-sm">
-                        Try switching the theme 🌓
+                    <span className="bg-muted/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/30 shadow-sm inline-flex items-center gap-1.5">
+                        {isDark ? (
+                            <>psst... flip the switch up there <span className="text-sm">☀️</span> I have two faces</>
+                        ) : (
+                            <>curious what happens in the dark? <span className="text-sm">🌙</span> hit that toggle</>
+                        )}
                     </span>
                 </motion.div>
             </div>
