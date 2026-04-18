@@ -38,7 +38,7 @@ export function Contact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
                     viewport={{ once: true }}
-                    href="mailto:n0nyf0xy@gmail.com"
+                    href="mailto:n0nyf0xy@duck.com"
                     className="group flex items-center justify-between rounded-xl border bg-card p-5 transition-all duration-300 hover:border-border hover:shadow-lg hover:-translate-y-0.5"
                 >
                     <div className="flex items-center gap-4">
