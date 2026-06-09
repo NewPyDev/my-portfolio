@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 /* ─────────────────────────────────────────────
    DARK / CODER: Matrix digital rain canvas
 ───────────────────────────────────────────── */
-export function MatrixRainBackground() {
+export function MatrixRainBackground({ className }: { className?: string }) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
@@ -93,7 +93,7 @@ export function MatrixRainBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full opacity-60"
+            className={`absolute inset-0 w-full h-full opacity-60 ${className || ""}`}
             style={{ display: "block" }}
         />
     )
@@ -127,7 +127,7 @@ function hexPath(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: numbe
     ctx.closePath()
 }
 
-export function BlueprintBackground() {
+export function BlueprintBackground({ className }: { className?: string }) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
@@ -156,7 +156,7 @@ export function BlueprintBackground() {
                 vy: (Math.random() - 0.5) * 0.15,
                 rotation: (Math.random() - 0.5) * 0.4,
                 vr: (Math.random() - 0.5) * 0.0008,
-                opacity: 0.07 + Math.random() * 0.13,
+                opacity: 0.15 + Math.random() * 0.25,
                 kind,
             }
         }
@@ -175,7 +175,7 @@ export function BlueprintBackground() {
             ctx.rotate(p.rotation)
             ctx.globalAlpha = p.opacity
 
-            const accent = "#6366f1" // indigo — matches light mode gradient
+            const accent = "#7dd3fc" // light sky-blue — glows on dark navy like a real blueprint
 
             ctx.strokeStyle = accent
             ctx.lineWidth = 1.2
@@ -192,7 +192,7 @@ export function BlueprintBackground() {
                 ctx.stroke()
                 // Corner marks
                 const m = 8
-                ;([[- p.w / 2, -p.h / 2], [p.w / 2, -p.h / 2], [-p.w / 2, p.h / 2], [p.w / 2, p.h / 2]] as [number, number][]).forEach(([cx, cy]) => {
+                ;([[-p.w / 2, -p.h / 2], [p.w / 2, -p.h / 2], [-p.w / 2, p.h / 2], [p.w / 2, p.h / 2]] as [number, number][]).forEach(([cx, cy]) => {
                     ctx.beginPath()
                     ctx.moveTo(cx + (cx > 0 ? -m : m), cy)
                     ctx.lineTo(cx, cy)
@@ -228,9 +228,9 @@ export function BlueprintBackground() {
         const draw = () => {
             ctx.clearRect(0, 0, W, H)
 
-            // Blueprint grid overlay (very faint)
-            ctx.globalAlpha = 0.035
-            ctx.strokeStyle = "#6366f1"
+            // Blueprint grid overlay (faint light-blue on dark navy)
+            ctx.globalAlpha = 0.06
+            ctx.strokeStyle = "#7dd3fc"
             ctx.lineWidth = 0.5
             const gridSize = 32
             for (let gx = 0; gx < W; gx += gridSize) {
@@ -274,7 +274,7 @@ export function BlueprintBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full opacity-80"
+            className={`absolute inset-0 w-full h-full opacity-80 ${className || ""}`}
             style={{ display: "block" }}
         />
     )

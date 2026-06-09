@@ -1,14 +1,17 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Database, Layers, PenTool, Zap, MessageSquare, Cpu, Globe } from "lucide-react"
-import { useTheme } from "next-themes"
+import { motion } from "framer-motion"
+import { Database, Layers, PenTool, Zap, MessageSquare, Cpu, Globe, ArrowDown } from "lucide-react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
 const skills = [
     {
         category: "Creative Suite",
+        gradient: "from-indigo-500 to-purple-600",
+        accentBg: "bg-indigo-500/10",
+        accentText: "text-indigo-500",
+        accentBorder: "border-indigo-500/20",
         items: [
             { name: "Polyboard", icon: Layers, desc: "Expert parametric furniture design for manufacturing." },
             { name: "CorelDRAW", icon: PenTool, desc: "Professional vector graphics and technical layout." },
@@ -17,6 +20,10 @@ const skills = [
     },
     {
         category: "Vibe Code",
+        gradient: "from-emerald-500 to-cyan-600",
+        accentBg: "bg-emerald-500/10",
+        accentText: "text-emerald-500",
+        accentBorder: "border-emerald-500/20",
         items: [
             { name: "Telegram & Discord Bots", icon: MessageSquare, desc: "Custom automated assistants and community managers." },
             { name: "Advanced Web Scraping", icon: Database, desc: "Extracting data from complex, dynamic websites." },
@@ -25,6 +32,10 @@ const skills = [
     },
     {
         category: "Languages",
+        gradient: "from-amber-500 to-orange-600",
+        accentBg: "bg-amber-500/10",
+        accentText: "text-amber-500",
+        accentBorder: "border-amber-500/20",
         items: [
             { name: "Arabic", icon: Globe, desc: "Native proficiency." },
             { name: "English", icon: Globe, desc: "University-level proficiency." },
@@ -33,47 +44,48 @@ const skills = [
     }
 ]
 
-const codeStory = {
-    badge: "About Me",
-    title: "the Code",
-    gradient: "from-emerald-500 to-cyan-500",
-    paragraphs: [
-        "Hey, I'm Mohammed Yassine — but everyone calls me Hami. My coding journey started in my early twenties, and honestly, it was messy at first. I bounced around between C, C++, C#, and even gave JavaScript a fair shot. Nothing really stuck. I'd start a tutorial, get halfway through, and feel like I was fighting the language more than learning it.",
-        "Then one day, I stumbled into Python. And I don't know how to explain it other than — it just made sense. The syntax, the logic, the way you could go from idea to working code in the same afternoon. I didn't just learn Python. I fell in love with it. I'd stay up way too late building random stuff — little scripts to rename my files, calculators nobody asked for, a tool to organize my music library. Nothing impressive, but every small project taught me something new.",
-        "After a while, I started pushing further. I picked up Flask, Django, tried my hand at web apps, even built a few desktop tools. I was just hungry to see what Python could really do. And then I discovered web scraping and automation — and that was the moment everything changed for me. The idea that I could write a script that goes out, collects data, processes it, and delivers it somewhere automatically? That blew my mind.",
-        "When COVID hit and the world slowed down, I didn't. I went all in on bots and scraping. Telegram bots, Discord bots, data pipelines, scheduled automations — I built them obsessively. I learned how anti-bot systems work just so I could figure out how to get past them. I studied APIs, reverse-engineered websites, and got really comfortable living in the terminal.",
-        "And then, just when I thought I'd found my groove, AI came into the picture — and honestly, it was like strapping a rocket to everything I'd already built. I started combining my scraping and automation knowledge with AI tools, and the speed at which I could ship went through the roof. What used to take me days now takes hours. What used to take hours now takes minutes. It's not about replacing the thinking — it's about amplifying it. AI didn't change what I do. It just made me dangerously fast at doing it.",
-    ],
-}
-
-const designStory = {
-    badge: "About Me",
-    title: "the Design",
-    gradient: "from-indigo-500 to-purple-600",
-    paragraphs: [
-        "Hey, I'm Mohammed Yassine — but everyone calls me Hami. The coding is only half of who I am. When COVID hit, the world didn't just slow down for my dev career. It hit everything. I found myself without work, no clear direction, just a lot of free time and a need to figure things out. That's when a close friend of mine — who was already working at a woodworking company — reached out and asked if I wanted to join him.",
-        "It was a small, specialized company focused on 'Sur Mesure' — fully custom-made furniture and interiors. Walk-in closets, kitchens, pharmacy fittings, retail displays, reception desks — everything built from scratch, tailored to the exact millimeter for each client. I had zero experience in the field, but I said yes. And honestly? It was one of the best decisions I've ever made.",
-        "I started from nothing. I didn't know what a cut list was, didn't understand material thickness, had never heard of Polyboard. But I threw myself into it the same way I threw myself into Python — with obsessive curiosity. I learned Polyboard inside and out — parametric furniture design, automatic hardware placement, material cost reports, 3D rendering. It became second nature.",
-        "Then came CorelDRAW. The company needed precise vector layouts for signage, branding, and detailed technical drawings. I picked it up fast and eventually became the go-to person for anything that needed clean, production-ready graphics. After that, I got into ArtCAM and Aspire for CNC carving — decorative panels, 3D relief work, intricate patterns that you just can't do by hand.",
-        "And the machines themselves — I didn't just design on screen. I learned to operate the CNC router, loading programs, setting tool paths, adjusting feeds and speeds. I even worked with a laser CNC for engraving and precision cutting. I'm not a machinist by trade, but I understand the full pipeline: from a client's sketch all the way to the finished piece coming off the machine.",
-        "That hands-on experience changed how I think about design. I don't just make things that look good in 3D — I make things that can actually be built, assembled, and installed without headaches. Every design I deliver comes with clean cut lists, hardware specs, and files ready for production. No guesswork, no surprises on the workshop floor.",
-    ],
-}
+/* ── Timeline entries: Design story first, then Code story ── */
+const timelineEntries = [
+    {
+        era: "design",
+        label: "The Design Origin",
+        gradient: "from-indigo-500 to-purple-600",
+        dotColor: "bg-indigo-500",
+        ringColor: "ring-indigo-500/30",
+        paragraphs: [
+            "Hey, I'm Mohammed Yassine — but everyone calls me Hami. When COVID hit, the world didn't just slow down for my dev career. It hit everything. I found myself without work, no clear direction, just a lot of free time and a need to figure things out. That's when a close friend of mine — who was already working at a woodworking company — reached out and asked if I wanted to join him.",
+            "It was a small, specialized company focused on 'Sur Mesure' — fully custom-made furniture and interiors. Walk-in closets, kitchens, pharmacy fittings, retail displays, reception desks — everything built from scratch, tailored to the exact millimeter for each client. I had zero experience in the field, but I said yes. And honestly? It was one of the best decisions I've ever made.",
+            "I started from nothing. I didn't know what a cut list was, didn't understand material thickness, had never heard of Polyboard. But I threw myself into it the same way I threw myself into Python — with obsessive curiosity. I learned Polyboard inside and out — parametric furniture design, automatic hardware placement, material cost reports, 3D rendering. It became second nature.",
+            "Then came CorelDRAW, ArtCAM, Aspire for CNC carving, and the machines themselves. I don't just make things that look good in 3D — I make things that can actually be built, assembled, and installed without headaches. Every design I deliver comes with clean cut lists, hardware specs, and files ready for production.",
+        ],
+    },
+    {
+        era: "code",
+        label: "The Code Journey",
+        gradient: "from-emerald-500 to-cyan-600",
+        dotColor: "bg-emerald-500",
+        ringColor: "ring-emerald-500/30",
+        paragraphs: [
+            "My coding journey started in my early twenties, and honestly, it was messy at first. I bounced around between C, C++, C#, and even gave JavaScript a fair shot. Nothing really stuck. Then one day, I stumbled into Python. And I don't know how to explain it other than — it just made sense. The syntax, the logic, the way you could go from idea to working code in the same afternoon.",
+            "After a while, I started pushing further. Flask, Django, web apps, desktop tools. And then I discovered web scraping and automation — and that was the moment everything changed for me. The idea that I could write a script that goes out, collects data, processes it, and delivers it somewhere automatically? That blew my mind.",
+            "When COVID hit, I went all in on bots and scraping. Telegram bots, Discord bots, data pipelines, scheduled automations — I built them obsessively. I learned how anti-bot systems work just so I could figure out how to get past them.",
+            "And then AI came into the picture — and it was like strapping a rocket to everything I'd already built. What used to take me days now takes hours. What used to take hours now takes minutes. It's not about replacing the thinking — it's about amplifying it. AI didn't change what I do. It just made me dangerously fast at doing it.",
+        ],
+    },
+]
 
 export function About() {
-    const { theme } = useTheme()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
     }, [])
 
-    const isDark = mounted && theme === "dark"
-    const activeStory = isDark ? codeStory : designStory
+    if (!mounted) return null
 
     return (
-        <section id="about" className="container py-24 sm:py-32 space-y-20">
-            {/* Story Section */}
+        <section id="about" className="container py-24 sm:py-32 space-y-24">
+            {/* ── Top: Avatar + Intro ── */}
             <div className="grid gap-12 lg:grid-cols-5 lg:gap-16 items-start">
                 {/* Avatar — Left Column */}
                 <motion.div
@@ -84,7 +96,7 @@ export function About() {
                     className="lg:col-span-2 flex flex-col items-center lg:sticky lg:top-24"
                 >
                     <div className="relative mb-6">
-                        <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${isDark ? 'from-emerald-500 via-cyan-500 to-blue-500' : 'from-indigo-500 via-purple-500 to-pink-500'} opacity-20 blur-lg transition-all duration-700`} />
+                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-indigo-500 via-emerald-500 to-cyan-500 opacity-20 blur-lg transition-all duration-700" />
                         <div className="relative overflow-hidden rounded-2xl border-2 border-border/50 shadow-2xl">
                             <Image
                                 src="/assets/avatar.png"
@@ -105,56 +117,95 @@ export function About() {
                         </span>
                         <span className="text-sm text-muted-foreground">Available for projects</span>
                     </div>
+                    {/* Tagline */}
+                    <p className="mt-6 text-center text-sm text-muted-foreground max-w-[280px] leading-relaxed">
+                        The designer who codes. Bridging aesthetic precision with functional automation.
+                    </p>
                 </motion.div>
 
-                {/* Story — Right Column (Theme-Aware) */}
-                <div className="lg:col-span-3 space-y-6">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={isDark ? "code" : "design"}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
-                                {activeStory.badge}
-                            </div>
-                            <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl mb-6">
-                                The Story Behind<br />
-                                <span className={`bg-gradient-to-r ${activeStory.gradient} bg-clip-text text-transparent transition-all duration-500`}>
-                                    {activeStory.title}
-                                </span>
-                            </h2>
-                        </motion.div>
-                    </AnimatePresence>
+                {/* Story — Right Column: Timeline */}
+                <div className="lg:col-span-3 space-y-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground mb-4">
+                            About Me
+                        </div>
+                        <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl mb-2">
+                            The Story Behind<br />
+                            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 bg-clip-text text-transparent">
+                                the Craft & the Code
+                            </span>
+                        </h2>
+                    </motion.div>
 
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={isDark ? "code-paragraphs" : "design-paragraphs"}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="space-y-6"
-                        >
-                            {activeStory.paragraphs.map((paragraph, i) => (
-                                <motion.p
-                                    key={i}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                                    className="text-muted-foreground leading-relaxed text-[15px]"
+                    {/* ── Vertical Timeline ── */}
+                    <div className="relative mt-10">
+                        {/* Timeline Line */}
+                        <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/40 via-border to-emerald-500/40" />
+
+                        {timelineEntries.map((entry, entryIdx) => (
+                            <div key={entry.era} className="relative mb-12 last:mb-0">
+                                {/* Era Label */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.4 }}
+                                    viewport={{ once: true }}
+                                    className="flex items-center gap-3 mb-6"
                                 >
-                                    {paragraph}
-                                </motion.p>
-                            ))}
-                        </motion.div>
-                    </AnimatePresence>
+                                    {/* Dot */}
+                                    <div className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ${entry.dotColor} ring-4 ${entry.ringColor} ring-offset-2 ring-offset-background shadow-lg`}>
+                                        <div className="h-2.5 w-2.5 rounded-full bg-white" />
+                                    </div>
+                                    <h3 className={`text-xl font-bold bg-gradient-to-r ${entry.gradient} bg-clip-text text-transparent`}>
+                                        {entry.label}
+                                    </h3>
+                                </motion.div>
+
+                                {/* Paragraphs */}
+                                <div className="pl-[2.75rem] space-y-4">
+                                    {entry.paragraphs.map((paragraph, i) => (
+                                        <motion.p
+                                            key={i}
+                                            initial={{ opacity: 0, y: 15 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.4, delay: i * 0.05 }}
+                                            viewport={{ once: true }}
+                                            className="text-muted-foreground leading-relaxed text-[15px]"
+                                        >
+                                            {paragraph}
+                                        </motion.p>
+                                    ))}
+                                </div>
+
+                                {/* Bridge between stories */}
+                                {entryIdx === 0 && (
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        whileInView={{ opacity: 1 }}
+                                        transition={{ duration: 0.6 }}
+                                        viewport={{ once: true }}
+                                        className="flex items-center gap-3 pl-[2.75rem] mt-8 mb-2"
+                                    >
+                                        <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/30 to-emerald-500/30" />
+                                        <span className="text-xs font-semibold text-muted-foreground/60 uppercase tracking-widest flex items-center gap-1.5">
+                                            But that&apos;s only half the story
+                                            <ArrowDown className="h-3 w-3 animate-bounce" />
+                                        </span>
+                                        <div className="h-px flex-1 bg-gradient-to-r from-emerald-500/30 to-indigo-500/30" />
+                                    </motion.div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Skills Grid */}
+            {/* ── Skills Grid ── */}
             <div>
                 <div className="mx-auto max-w-[58rem] text-center mb-12">
                     <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Multi-Disciplinary Expertise</h2>
@@ -166,7 +217,10 @@ export function About() {
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
                     {skills.map((category, i) => (
                         <div key={i} className="space-y-6">
-                            <h3 className="text-xl font-bold border-b pb-2">{category.category}</h3>
+                            <h3 className="text-xl font-bold border-b pb-2 flex items-center gap-2">
+                                <span className={`inline-block h-2.5 w-2.5 rounded-full bg-gradient-to-r ${category.gradient}`} />
+                                {category.category}
+                            </h3>
                             <div className="grid gap-4">
                                 {category.items.map((skill, j) => (
                                     <motion.div
@@ -175,9 +229,9 @@ export function About() {
                                         whileInView={{ opacity: 1, x: 0 }}
                                         transition={{ delay: j * 0.1 }}
                                         viewport={{ once: true }}
-                                        className="flex items-start gap-4 rounded-lg border p-4 hover:bg-muted/50 transition-colors"
+                                        className={`flex items-start gap-4 rounded-lg border ${category.accentBorder} p-4 hover:bg-muted/50 transition-colors`}
                                     >
-                                        <div className="mt-1 rounded-md bg-primary/10 p-2 text-primary">
+                                        <div className={`mt-1 rounded-md ${category.accentBg} p-2 ${category.accentText}`}>
                                             <skill.icon className="h-5 w-5" />
                                         </div>
                                         <div>
