@@ -2,6 +2,22 @@ import { Project, Service, Testimonial } from "@/lib/types";
 
 export const projects: Project[] = [
     {
+        id: "last-war-companion",
+        title: "Last War Companion",
+        description: "The premier Discord bot for Last War alliances. 5-second member verification via OCR, Saturday Kill Event unshielded base radar, squad power balancing, and 24/7 telemetry monitoring.",
+        category: "Code",
+        tags: ["Discord Bot", "Python", "OCR", "Gaming", "Automation"],
+        demoUrl: "https://lastwarcompanion.bot.nu/",
+    },
+    {
+        id: "tenkai-anime-rpg",
+        title: "Tenkai (天界)",
+        description: "Anime Multiverse RPG & tactical squad drafting platform for Discord. Features 7-pick anime drafts, 10,000 HP World Boss raids, rendered Pillow rank cards, and Yu-Gi-Oh! card duels across 6 universes.",
+        category: "Code",
+        tags: ["Discord Bot", "Python", "RPG", "Gaming", "Pillow"],
+        demoUrl: "https://tenkai.bot.nu/",
+    },
+    {
         id: "tarajim-for-kids",
         title: "Tarajim For Kids",
         description: "Bilingual educational web application for teaching children about the lives of the Sahaba",
