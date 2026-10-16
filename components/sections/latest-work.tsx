@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Github, Star, GitFork, ArrowUpRight, ExternalLink, Loader2 } from "lucide-react"
+import { projects } from "@/lib/data"
 
 interface GitHubRepo {
-    id: number
+    id: number | string
     name: string
     description: string | null
     html_url: string
@@ -14,6 +15,20 @@ interface GitHubRepo {
     forks_count: number
     pushed_at: string
 }
+
+const FALLBACK_REPOS: GitHubRepo[] = projects
+    .filter((p) => p.category === "Code" && p.repoUrl)
+    .slice(0, 4)
+    .map((p, idx) => ({
+        id: `fallback-${idx}`,
+        name: p.title,
+        description: p.description,
+        html_url: p.repoUrl!,
+        language: p.tags[0] || "Python",
+        stargazers_count: 0,
+        forks_count: 0,
+        pushed_at: new Date().toISOString(),
+    }))
 
 const languageColors: Record<string, string> = {
     Python: "bg-blue-500",
@@ -24,22 +39,23 @@ const languageColors: Record<string, string> = {
 }
 
 export function LatestWork() {
-    const [repos, setRepos] = useState<GitHubRepo[]>([])
+    const [repos, setRepos] = useState<GitHubRepo[]>(FALLBACK_REPOS)
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
 
     useEffect(() => {
         async function fetchRepos() {
             try {
                 const res = await fetch(
-                    "https://api.github.com/users/NewPyDev/repos?sort=pushed&direction=desc&per_page=4",
-                    { next: { revalidate: 3600 } } as RequestInit
+                    "https://api.github.com/users/NewPyDev/repos?sort=pushed&direction=desc&per_page=4"
                 )
-                if (!res.ok) throw new Error("Failed to fetch")
-                const data = await res.json()
-                setRepos(data)
+                if (res.ok) {
+                    const data = await res.json()
+                    if (Array.isArray(data) && data.length > 0) {
+                        setRepos(data)
+                    }
+                }
             } catch {
-                setError(true)
+                // Keep fallback repos on network or rate limit failure
             } finally {
                 setLoading(false)
             }
@@ -50,14 +66,12 @@ export function LatestWork() {
     function timeAgo(dateStr: string) {
         const diff = Date.now() - new Date(dateStr).getTime()
         const days = Math.floor(diff / 86400000)
-        if (days === 0) return "today"
+        if (days <= 0) return "recently"
         if (days === 1) return "yesterday"
         if (days < 30) return `${days}d ago`
         if (days < 365) return `${Math.floor(days / 30)}mo ago`
         return `${Math.floor(days / 365)}y ago`
     }
-
-    if (error) return null // Gracefully hide if API fails
 
     return (
         <section id="latest-work" className="py-24 sm:py-32">

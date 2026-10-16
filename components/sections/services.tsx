@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { services } from "@/lib/data"
 import { Database, MessageSquare, Zap, Layers, ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     Database,
@@ -82,15 +83,15 @@ export function Services() {
                                     </ul>
 
                                     {/* CTA */}
-                                    <a
-                                        href="#contact"
+                                    <Link
+                                        href="/#contact"
                                         className={`relative inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3`}
                                     >
                                         <span className={`bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
                                             Get Started
                                         </span>
                                         <ArrowRight className={`h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors`} />
-                                    </a>
+                                    </Link>
                                 </div>
                             </motion.div>
                         )
@@ -100,7 +101,7 @@ export function Services() {
                 {/* Bottom CTA */}
                 <div className="text-center">
                     <p className="text-sm text-muted-foreground">
-                        Need something custom? Every project is different. <a href="#contact" className="font-medium text-foreground underline underline-offset-4 hover:text-primary transition-colors">Let&apos;s talk about yours →</a>
+                        Need something custom? Every project is different. <Link href="/#contact" className="font-medium text-foreground underline underline-offset-4 hover:text-primary transition-colors">Let&apos;s talk about yours →</Link>
                     </p>
                 </div>
             </div>

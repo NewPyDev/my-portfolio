@@ -75,7 +75,7 @@ export function SectionObserver({
     }, [isInView, id, setActiveSection])
 
     return (
-        <div ref={ref} id={id} className={className}>
+        <div ref={ref} className={className}>
             {children}
         </div>
     )

@@ -1,22 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Terminal, Palette } from "lucide-react"
 import { MatrixRainBackground, BlueprintBackground } from "@/components/sections/hero-backgrounds"
 
 export function Hero() {
-    const [mounted, setMounted] = useState(false)
-
-    useEffect(() => {
-        setTimeout(() => setMounted(true), 0)
-    }, [])
-
-    if (!mounted) return <div className="h-[calc(100vh-3.5rem)]" /> // Prevent layout shift
-
     return (
-        <section className="relative flex h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center overflow-hidden border-b bg-background transition-colors duration-500">
+        <section id="hero" className="relative flex h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center overflow-hidden border-b bg-background transition-colors duration-500">
             {/* ── Split-Screen Background ── */}
             {/* Left Half: Code / Matrix Rain (dark) */}
             <div

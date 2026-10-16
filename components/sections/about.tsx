@@ -1,9 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Database, Layers, PenTool, Zap, MessageSquare, Cpu, Globe, ArrowDown } from "lucide-react"
-import { useState, useEffect } from "react"
-import Image from "next/image"
+import { Database, Layers, PenTool, Zap, MessageSquare, Cpu, Globe, ArrowDown, Code2 } from "lucide-react"
 
 const skills = [
     {
@@ -61,7 +59,7 @@ const timelineEntries = [
     },
     {
         era: "code",
-        label: "The Code Journey",
+        label: "The Code Evolution",
         gradient: "from-emerald-500 to-cyan-600",
         dotColor: "bg-emerald-500",
         ringColor: "ring-emerald-500/30",
@@ -75,19 +73,11 @@ const timelineEntries = [
 ]
 
 export function About() {
-    const [mounted, setMounted] = useState(false)
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
-    if (!mounted) return null
-
     return (
         <section id="about" className="container py-24 sm:py-32 space-y-24">
             {/* ── Top: Avatar + Intro ── */}
             <div className="grid gap-12 lg:grid-cols-5 lg:gap-16 items-start">
-                {/* Avatar — Left Column */}
+                {/* Visual Emblem — Left Column */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -95,17 +85,46 @@ export function About() {
                     viewport={{ once: true }}
                     className="lg:col-span-2 flex flex-col items-center lg:sticky lg:top-24"
                 >
-                    <div className="relative mb-6">
-                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-indigo-500 via-emerald-500 to-cyan-500 opacity-20 blur-lg transition-all duration-700" />
-                        <div className="relative overflow-hidden rounded-2xl border-2 border-border/50 shadow-2xl">
-                            <Image
-                                src="/assets/avatar.png"
-                                alt="Mohammed Yassine — Hami"
-                                width={400}
-                                height={400}
-                                className="object-cover"
-                                priority
-                            />
+                    <div className="relative mb-6 w-full max-w-[280px] aspect-square">
+                        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-emerald-500 opacity-25 blur-xl transition-all duration-700" />
+                        <div className="relative h-full w-full overflow-hidden rounded-3xl border border-border/80 bg-gradient-to-b from-card/90 to-card/60 p-6 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
+                            {/* Top decorative bar */}
+                            <div className="flex items-center justify-between border-b border-border/50 pb-3">
+                                <div className="flex items-center gap-1.5">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+                                </div>
+                                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/80">
+                                    Dual Craft
+                                </span>
+                            </div>
+
+                            {/* Center Dual-Identity Emblem */}
+                            <div className="my-auto flex items-center justify-center py-4">
+                                <div className="relative flex items-center justify-center">
+                                    <div className="absolute h-28 w-28 rounded-full bg-gradient-to-tr from-indigo-500/20 via-emerald-500/20 to-cyan-500/20 blur-md animate-pulse" />
+                                    
+                                    <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-border/60 bg-background/80 shadow-inner">
+                                        <div className="absolute -left-3 top-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-2 text-indigo-400 backdrop-blur-md shadow-md">
+                                            <Layers className="h-5 w-5" />
+                                        </div>
+                                        <div className="absolute -right-3 bottom-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-2 text-emerald-400 backdrop-blur-md shadow-md">
+                                            <Code2 className="h-5 w-5" />
+                                        </div>
+                                        <div className="font-mono text-xl font-black tracking-tighter bg-gradient-to-br from-indigo-400 via-purple-300 to-emerald-400 bg-clip-text text-transparent">
+                                            H//MY
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bottom technical specs */}
+                            <div className="flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[11px] text-muted-foreground">
+                                <span className="text-indigo-400/90 font-medium">CAD / CNC</span>
+                                <span className="text-border">•</span>
+                                <span className="text-emerald-400/90 font-medium">PYTHON / BOT</span>
+                            </div>
                         </div>
                     </div>
                     <h3 className="text-2xl font-bold text-center">Mohammed Yassine</h3>

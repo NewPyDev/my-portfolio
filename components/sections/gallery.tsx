@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { projects } from "@/lib/data"
 import { Github, ArrowUpRight, Code2, Palette } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Category } from "@/lib/types"
 
 export function Gallery() {
@@ -78,9 +79,11 @@ export function Gallery() {
                                         <div className="relative aspect-[4/3] overflow-hidden">
                                             {project.imageUrl ? (
                                                 <>
-                                                    <img
+                                                    <Image
                                                         src={project.imageUrl}
                                                         alt={project.title}
+                                                        fill
+                                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                                         className="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
                                                     />
                                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />

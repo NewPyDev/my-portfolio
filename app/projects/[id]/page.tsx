@@ -1,10 +1,11 @@
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { projects } from "@/lib/data"
 import { Navbar } from "@/components/sections/navbar"
 import { Footer } from "@/components/sections/footer"
-import { ExternalLink, Github, ArrowLeft, Layers, Terminal } from "lucide-react"
+import { ExternalLink, Github, ArrowLeft } from "lucide-react"
 import Link from "next/link"
-
+import Image from "next/image"
 
 interface ProjectPageProps {
     params: Promise<{
@@ -16,6 +17,16 @@ export async function generateStaticParams() {
     return projects.map((project) => ({
         id: project.id,
     }))
+}
+
+export async function generateMetadata(props: ProjectPageProps): Promise<Metadata> {
+    const params = await props.params;
+    const project = projects.find((p) => p.id === params.id)
+    if (!project) return { title: "Project Not Found" }
+    return {
+        title: `${project.title} | Hami`,
+        description: project.description,
+    }
 }
 
 export default async function ProjectPage(props: ProjectPageProps) {
@@ -69,10 +80,13 @@ export default async function ProjectPage(props: ProjectPageProps) {
 
                     <div className="relative aspect-video overflow-hidden rounded-xl border bg-muted">
                         {project.imageUrl ? (
-                            <img
+                            <Image
                                 src={project.imageUrl}
                                 alt={project.title}
+                                fill
+                                sizes="(max-width: 1200px) 100vw, 50vw"
                                 className="object-cover w-full h-full"
+                                priority
                             />
                         ) : project.category === "Design" ? (
                             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 transition-colors p-8 text-center">
