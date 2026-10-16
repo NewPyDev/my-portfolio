@@ -4,9 +4,9 @@ export const projects: Project[] = [
     {
         id: "last-war-companion",
         title: "Last War Companion",
-        description: "The premier Discord bot for Last War alliances. 5-second member verification via OCR, Saturday Kill Event unshielded base radar, squad power balancing, and 24/7 telemetry monitoring.",
+        description: "The premier Discord bot for Last War alliances. 5-second member verification via in-game UID, Saturday Kill Event unshielded base radar, squad power balancing, and 24/7 telemetry monitoring.",
         category: "Code",
-        tags: ["Discord Bot", "Python", "OCR", "Gaming", "Automation"],
+        tags: ["Discord Bot", "Python", "Last War", "Gaming", "Automation"],
         demoUrl: "https://lastwarcompanion.bot.nu/",
     },
     {

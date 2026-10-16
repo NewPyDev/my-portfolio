@@ -15,8 +15,8 @@ const FEATURED_BOTS = [
     {
         id: "last-war-companion",
         name: "Last War Companion",
-        badge: "Tactical Operations & OCR",
-        description: "The premier Discord bot for Last War alliances. 5-second member verification via OCR, Saturday Kill Event unshielded base radar sweeps, squad power balancing, and 24/7 telemetry monitoring.",
+        badge: "Tactical Operations & Verification",
+        description: "The premier Discord bot for Last War alliances. 5-second member verification via in-game UID, Saturday Kill Event unshielded base radar sweeps, squad power balancing, and 24/7 telemetry monitoring.",
         url: "https://lastwarcompanion.bot.nu/",
         stats: ["31 Slash Commands", "5s Auto-Verify", "Radar Sweeps", "Top.gg Verified"],
         gradient: "from-amber-500 via-orange-500 to-red-600",
@@ -78,7 +78,7 @@ export function BotDemo() {
             if (lowerInput.includes("/help") || lowerInput.includes("help") || lowerInput.includes("hi") || lowerInput.includes("hello")) {
                 responseText = "Here's what I can help with:\n\n/bots — Live Discord bots (Last War & Tenkai)\n/services — What I build & pricing\n/scraper — Web scraping details\n/portfolio — See all projects\n/contact — Get in touch\n/hire — Ready to start?"
             } else if (lowerInput.includes("/bots") || lowerInput.includes("bot") || lowerInput.includes("discord") || lowerInput.includes("telegram")) {
-                responseText = "🤖 Check out my live Discord production bots:\n\n1️⃣ Last War Companion\n🔗 https://lastwarcompanion.bot.nu/\n• 31 slash commands, OCR verification in 5s, Saturday Kill Event base radar, and squad duel simulation.\n\n2️⃣ Tenkai (天界)\n🔗 https://tenkai.bot.nu/\n• Anime multiverse RPG, 7-pick tactical drafts, 10k HP World Boss raids, rendered Pillow rank cards & Yu-Gi-Oh! duels.\n\nNeed a custom bot for your business or gaming community? I build with Python (Aiogram, Discord.py). Starting from $100!"
+                responseText = "🤖 Check out my live Discord production bots:\n\n1️⃣ Last War Companion\n🔗 https://lastwarcompanion.bot.nu/\n• 31 slash commands, UID verification in 5s, Saturday Kill Event base radar, and squad duel simulation.\n\n2️⃣ Tenkai (天界)\n🔗 https://tenkai.bot.nu/\n• Anime multiverse RPG, 7-pick tactical drafts, 10k HP World Boss raids, rendered Pillow rank cards & Yu-Gi-Oh! duels.\n\nNeed a custom bot for your business or gaming community? I build with Python (Aiogram, Discord.py). Starting from $100!"
             } else if (lowerInput.includes("/services") || lowerInput.includes("services") || lowerInput.includes("what do you do")) {
                 responseText = "I offer 4 core services:\n\n🤖 Custom Discord & Telegram Bots — from $100\n🔍 Web Scraping Solutions — from $150\n⚡ Scraper + Bot Automation Pipeline — from $250\n🪵 Furniture Design (Polyboard) — from $200\n\nClick a command chip or type the service name for more details!"
             } else if (lowerInput.includes("/scraper") || lowerInput.includes("scraping") || lowerInput.includes("scrape")) {
@@ -309,7 +309,7 @@ export function BotDemo() {
                 >
                     <div className="rounded-2xl border bg-gradient-to-r from-emerald-500/5 via-cyan-500/5 to-purple-500/5 p-6 text-center">
                         <p className="font-semibold text-foreground mb-1">Need a custom bot for your Discord or Telegram community?</p>
-                        <p className="text-sm text-muted-foreground mb-4">From OCR verification to full interactive RPG mechanics — built fast, reliable, and 24/7 online.</p>
+                        <p className="text-sm text-muted-foreground mb-4">From automated member verification to full interactive RPG mechanics — built fast, reliable, and 24/7 online.</p>
                         <Link
                             href="/#contact"
                             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-2.5 text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
