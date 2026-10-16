@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://newpydev.github.io/my-portfolio",
+    url: "https://mohammed-yassine.is-a.dev",
     title: "Hami | The Designer Who Codes",
     description: "Two crafts, one creator. Precision furniture design meets Python automation, bots, and AI-augmented web scraping.",
     siteName: "Hami Portfolio",
