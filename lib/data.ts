@@ -7,6 +7,7 @@ export const projects: Project[] = [
         description: "The premier Discord bot for Last War alliances. 5-second member verification via in-game UID, Saturday Kill Event unshielded base radar, squad power balancing, and 24/7 telemetry monitoring.",
         category: "Code",
         tags: ["Discord Bot", "Python", "Last War", "Gaming", "Automation"],
+        imageUrl: "/assets/lastwarcompanion.png",
         demoUrl: "https://lastwarcompanion.bot.nu/",
     },
     {
@@ -15,6 +16,7 @@ export const projects: Project[] = [
         description: "Anime Multiverse RPG & tactical squad drafting platform for Discord. Features 7-pick anime drafts, 10,000 HP World Boss raids, rendered Pillow rank cards, and Yu-Gi-Oh! card duels across 6 universes.",
         category: "Code",
         tags: ["Discord Bot", "Python", "RPG", "Gaming", "Pillow"],
+        imageUrl: "/assets/tenkai.png",
         demoUrl: "https://tenkai.bot.nu/",
     },
     {

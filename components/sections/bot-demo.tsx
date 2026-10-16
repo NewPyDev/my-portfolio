@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Send, Bot, RefreshCcw, ArrowRight, ExternalLink, Shield, Swords, Sparkles } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 type Message = {
     id: string;
@@ -18,6 +19,7 @@ const FEATURED_BOTS = [
         badge: "Tactical Operations & Verification",
         description: "The premier Discord bot for Last War alliances. 5-second member verification via in-game UID, Saturday Kill Event unshielded base radar sweeps, squad power balancing, and 24/7 telemetry monitoring.",
         url: "https://lastwarcompanion.bot.nu/",
+        image: "/assets/lastwarcompanion.png",
         stats: ["31 Slash Commands", "5s Auto-Verify", "Radar Sweeps", "Top.gg Verified"],
         gradient: "from-amber-500 via-orange-500 to-red-600",
         glow: "rgba(245, 158, 11, 0.15)",
@@ -29,6 +31,7 @@ const FEATURED_BOTS = [
         badge: "Anime Multiverse RPG",
         description: "Anime Multiverse RPG & squad drafting platform for Discord. Features 7-pick tactical anime drafts, 10,000 HP World Boss raids, rendered Pillow rank cards, and Yu-Gi-Oh! duels across 6 universes.",
         url: "https://tenkai.bot.nu/",
+        image: "/assets/tenkai.png",
         stats: ["6 Anime Universes", "10,000 HP Bosses", "Pillow Rank Cards", "Structure Decks"],
         gradient: "from-purple-500 via-indigo-500 to-cyan-500",
         glow: "rgba(168, 85, 247, 0.15)",
@@ -169,9 +172,20 @@ export function BotDemo() {
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                                         {bot.description}
                                     </p>
+
+                                    {/* Website Screenshot Preview */}
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border/50 mb-5 bg-muted/40 shadow-inner group-hover:border-border transition-colors">
+                                        <Image
+                                            src={bot.image}
+                                            alt={`${bot.name} website preview`}
+                                            fill
+                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                        />
+                                    </div>
 
                                     {/* Feature Pills */}
                                     <div className="flex flex-wrap gap-2 mb-6">
